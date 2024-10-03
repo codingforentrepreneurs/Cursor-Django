@@ -16,3 +16,5 @@ Environment:
 - Root folder: /opt/cursor/projects/cursor-django
 - Runtime: Python 3.12
 - Python Environment: `venv` at `/opt/cursor/projects/cursor-django/venv`
+- Django root folder: `src`
+- Django project name: `cfehome`
