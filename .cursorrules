@@ -18,3 +18,4 @@ Environment:
 - Python Environment: `venv` at `/opt/cursor/projects/cursor-django/venv`
 - Django root folder: `src`
 - Django project name: `cfehome`
+- Django run command: `venv/bin/python src/manage.py runserver 0.0.0.0:8000`
