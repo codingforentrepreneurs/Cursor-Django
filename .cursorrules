@@ -19,3 +19,4 @@ Environment:
 - Django root folder: `src`
 - Django project name: `cfehome`
 - Django run command: `venv/bin/python src/manage.py runserver 0.0.0.0:8000`
+- Environment-variables manager: `python-decouple`
