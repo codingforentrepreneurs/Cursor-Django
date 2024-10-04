@@ -1,16 +1,3 @@
-[Unit]
-Description=Cursor Django Application
-After=network.target
-
-[Service]
-User=root
-Group=www-data
-WorkingDirectory=/opt/cursor/projects/cursor-django
-ExecStart=/opt/cursor/projects/cursor-django/venv/bin/gunicorn --chdir src cfehome.wsgi:application --bind 0.0.0.0:8000 --reload --log-level debug
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
 
 # Installation and Usage Instructions:
 
@@ -40,3 +27,18 @@ WantedBy=multi-user.target
 
 # 9. To view the logs:
 #    sudo journalctl -u cursor-django
+
+
+[Unit]
+Description=Cursor Django Application
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/opt/cursor/projects/cursor-django
+ExecStart=/opt/cursor/projects/cursor-django/venv/bin/gunicorn --chdir src cfehome.wsgi:application --bind 0.0.0.0:8000 --reload --log-level debug
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
