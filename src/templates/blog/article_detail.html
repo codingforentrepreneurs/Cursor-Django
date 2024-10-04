@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-4">{{ article.title }}</h1>
+    <p class="text-sm text-gray-600 mb-6"><small>Published on {{ article.pub_date|date:"F d, Y" }} at {{ article.pub_date|date:"g:i A" }} by {{ article.author.username }}</small></p>
+    <div class="prose prose-lg mb-8">
+        {{ article.content|linebreaks }}
+    </div>
+    <p><a href="{% url 'blog:article_list' %}" class="text-blue-600 hover:text-blue-800 underline">Back to article list</a></p>
+</div>
+{% endblock %}

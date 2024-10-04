@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Articles</h1>
+    <ul class="space-y-6">
+        {% for article in articles %}
+        <li class="border-b border-gray-200 pb-4">
+            <a href="{% url 'blog:article_detail' article.pk %}" class="text-xl font-semibold text-blue-600 hover:text-blue-800">{{ article.title }}</a>
+            <p class="text-sm text-gray-600 mt-2">
+                Published on {{ article.pub_date|date:"F d, Y" }} by {{ article.author.username }}
+            </p>
+        </li>
+        {% empty %}
+        <li class="text-gray-500 italic">No articles available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
