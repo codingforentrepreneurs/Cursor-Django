@@ -1,2 +1,3 @@
 Django
 python-decouple
+gunicorn
