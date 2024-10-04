@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}CFE Main Website - Home{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+   
+    <link rel="stylesheet" href="{% static 'css/flowbite.min.css' %}">
     {% block extra_head %}{% endblock extra_head %}
 </head>
 <body class="bg-gray-100">
@@ -43,13 +42,6 @@
                 </ul>
             </div>
         </div>
-    </nav>
-
-    <nav>
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'tech_stack' %}">Tech Stack</a></li>
-        </ul>
     </nav>
 
     {% block content %}
