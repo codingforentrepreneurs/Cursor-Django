@@ -19,4 +19,5 @@ Environment:
 - Django root folder: `src`
 - Django project name: `cfehome`
 - Django run command: `venv/bin/gunicorn --chdir src cfehome.wsgi:application --bind 0.0.0.0:8000 --reload --log-level debug`
+- Django background service: `cursor-django.service`
 - Environment-variables manager: `python-decouple`

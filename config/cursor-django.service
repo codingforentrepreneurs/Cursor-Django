@@ -1,0 +1,42 @@
+[Unit]
+Description=Cursor Django Application
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/opt/cursor/projects/cursor-django
+ExecStart=/opt/cursor/projects/cursor-django/venv/bin/gunicorn --chdir src cfehome.wsgi:application --bind 0.0.0.0:8000 --reload --log-level debug
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+# Installation and Usage Instructions:
+
+# 1. Copy this file to the systemd service directory:
+#    sudo cp /opt/cursor/projects/cursor-django/config/cursor-django.service /etc/systemd/system/
+
+# 2. Set the correct permissions:
+#    sudo chmod 644 /etc/systemd/system/cursor-django.service
+
+# 3. Reload the systemd daemon to recognize the new service:
+#    sudo systemctl daemon-reload
+
+# 4. Start the service:
+#    sudo systemctl start cursor-django
+
+# 5. Enable the service to start on boot:
+#    sudo systemctl enable cursor-django
+
+# 6. Check the status of the service:
+#    sudo systemctl status cursor-django
+
+# 7. To stop the service:
+#    sudo systemctl stop cursor-django
+
+# 8. To restart the service:
+#    sudo systemctl restart cursor-django
+
+# 9. To view the logs:
+#    sudo journalctl -u cursor-django
