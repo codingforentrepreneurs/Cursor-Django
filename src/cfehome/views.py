@@ -35,3 +35,6 @@ def products_view(request):
         'description': 'Explore our range of products and services.'
     }
     return render(request, 'products.html', context)
+
+def tech_stack(request):
+    return render(request, 'tech_stack.html')
