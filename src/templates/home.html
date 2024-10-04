@@ -3,8 +3,13 @@
 {% block title %}Welcome to Cursor Django{% endblock title %}
 
 {% block content %}
-<h1>Welcome to Cursor Django</h1>
-<p>This is the new homepage for your Django project.</p>
-<p>Created by: {{ name }}</p>
-<p>Contact: {{ email }}</p>
+{% if user.is_authenticated %}
+    <h1>Welcome to Cursor Django, {{ user.username }}!</h1>
+    <p>This is the new homepage for your Django project.</p>
+{% else %}
+    <h1>Welcome to Cursor Django</h1>
+    <p>This is the new homepage for your Django project.</p>
+    <p>Created by: {{ name }}</p>
+    <p>Contact: {{ email }}</p>
+{% endif %}
 {% endblock content %}
