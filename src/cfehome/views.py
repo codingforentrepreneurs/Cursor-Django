@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import random
+
 
 def home_view(request):
     context = {
@@ -38,3 +40,19 @@ def products_view(request):
 
 def tech_stack(request):
     return render(request, 'tech_stack.html')
+
+
+def product_detail_view(request, product_id):
+    # In a real application, you would fetch the product from a database
+    # For this example, we'll use a dummy product
+    product = {
+        'id': product_id,
+        'name': f'Product {product_id}',
+        'description': f'This is the detailed description for Product {product_id}.',
+        'price': round(product_id * 10 + random.uniform(0.99, 9.99), 2)
+    }
+    
+    context = {
+        'product': product
+    }
+    return render(request, 'product_detail.html', context)
