@@ -2,15 +2,24 @@ from django.shortcuts import render, redirect
 import random
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from comments.models import Comment
+from contact.models import ContactEntry
+
 from .forms import SignUpForm
 
-
 def home_view(request):
-    context = {
-        'name': 'justin mitchel',
-        'email': 'codingforentrepreneurs@gmail.com'
-    }
-    return render(request, 'home.html', context)
+    if request.user.is_authenticated:
+        return user_dashboard_view(request)
+    else:
+        context = {
+            'name': 'justin mitchel',
+            'email': 'codingforentrepreneurs@gmail.com'
+        }
+        return render(request, 'home.html', context)
 
 def about_view(request):
     context = {
@@ -90,3 +99,30 @@ def signup_view(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+
+@login_required
+def user_dashboard_view(request):
+    user = request.user
+    
+    # Fetch comments and contact entries for the user
+    comments = Comment.objects.filter(user=user)
+    contact_entries = ContactEntry.objects.filter(user=user)
+    
+    # Combine querysets
+    combined_data = list(comments) + list(contact_entries)
+    # Sort combined data by creation date
+    combined_data.sort(key=lambda x: x.created_at, reverse=True)
+    
+    # Get counts
+    comments_count = comments.count()
+    contact_entries_count = contact_entries.count()
+    
+    context = {
+        'user_data': combined_data,
+        'comments_count': comments_count,
+        'contact_entries_count': contact_entries_count,
+    }
+    
+    return render(request, 'dashboard/user_dashboard.html', context)
