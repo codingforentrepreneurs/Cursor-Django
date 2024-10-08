@@ -3,10 +3,40 @@
 {% block content %}
 <div class="max-w-3xl mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-4">{{ article.title }}</h1>
-    <p class="text-sm text-gray-600 mb-6"><small>Published on {{ article.pub_date|date:"F d, Y" }} at {{ article.pub_date|date:"g:i A" }} by {{ article.author.username }}</small></p>
+    <p class="text-sm text-gray-600 mb-6">
+        <small>Published on {{ article.pub_date|date:"F d, Y" }} at {{ article.pub_date|date:"g:i A" }} by {{ article.author.username }}</small>
+    </p>
     <div class="prose prose-lg mb-8">
         {{ article.content|linebreaks }}
     </div>
-    <p><a href="{% url 'blog:article_list' %}" class="text-blue-600 hover:text-blue-800 underline">Back to article list</a></p>
+    
+    <h2 class="text-2xl font-bold mt-8 mb-4">Comments</h2>
+    {% if user.is_authenticated %}
+        <form method="post" class="mb-6">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Add Comment
+            </button>
+        </form>
+    {% else %}
+        <p class="mb-6">Please <a href="{% url 'login' %}" class="text-blue-600 hover:text-blue-800 underline">log in</a> to leave a comment.</p>
+    {% endif %}
+    
+    {% for comment in comments %}
+        <div class="comment mb-4 p-4 bg-gray-100 rounded">
+            <p class="mb-2">{{ comment.text }}</p>
+            <p class="text-sm text-gray-600">
+                By {{ comment.user.username }} on {{ comment.created_at|date:"F d, Y" }} at {{ comment.created_at|date:"g:i A" }}
+            </p>
+            {% if user == comment.user %}
+                <a href="{% url 'blog:delete_comment' comment.id %}" class="text-red-600 hover:text-red-800 text-sm">Delete</a>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p class="text-gray-600">No comments yet.</p>
+    {% endfor %}
+    
+    <p class="mt-8"><a href="{% url 'blog:article_list' %}" class="text-blue-600 hover:text-blue-800 underline">Back to article list</a></p>
 </div>
 {% endblock %}

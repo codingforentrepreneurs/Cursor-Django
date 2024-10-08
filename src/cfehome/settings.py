@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',  # Add the new blog app here
+    'comments',  # Add the new comments app
 ]
 
 MIDDLEWARE = [
