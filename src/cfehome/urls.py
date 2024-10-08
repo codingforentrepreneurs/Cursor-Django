@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import (
     home_view, about_view, contact_view, pricing_view, products_view, 
-    tech_stack, product_detail_view, login_view, logout_view
+    tech_stack, product_detail_view, login_view, logout_view, signup_view
 )
 
 urlpatterns = [
@@ -33,4 +33,5 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace='blog')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),  # Add this line
+    path('signup/', signup_view, name='signup'),
 ]

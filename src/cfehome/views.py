@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 import random
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .forms import SignUpForm
 
 
 def home_view(request):
@@ -76,3 +77,16 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'You have been successfully logged out.')
     return redirect('home')
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
