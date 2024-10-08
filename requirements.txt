@@ -1,3 +1,5 @@
 Django
 python-decouple
 gunicorn
+psycopg[binary]
+dj-database-url
