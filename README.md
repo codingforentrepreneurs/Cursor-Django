@@ -13,17 +13,29 @@ Cursor is what you thought GitHub Copilot was going to be. Heck, even if they do
 Let's do this! Topics, code links, and chapters below.
 
 Topics:
+
 ✅ Do Full Stack Web Development in pure English
+
 ✅ Leverage Anthropic's Claude.ai right on your machine without copying and pasting
+
 ✅ Diagnose issues with ease 
+
 ✅ Learn various commands to speed up how you use Cursor AI
+
 ✅ Create rules for Cursor to follow to ensure consistent workflows
+
 ✅ Skip local setup and develop directly on cheap servers
+
 ✅ Build your first static website in about 10 minutes
+
 ✅ Integrate Git and GitHub to easily backup your code and undo bad AI generations
+
 ✅ Build a Python & Django Web App without writing a single line of code
+
 ✅ Leverage Neon Postgres to persist database data across VMs
+
 ✅ Deploy a production-ready web server to access your in-development web app from anywhere in the world
+
 ✅ And much more!
 
 Watch it [on youtube](https://youtu.be/ESrWYoXZc8s)
